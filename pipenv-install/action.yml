@@ -18,4 +18,5 @@ runs:
 
     - name: Install dependencies (pipenv)
       if: steps.cache-pipenv.outputs.cache-hit != 'true'
+      shell: bash
       run: pipenv install --deploy --dev

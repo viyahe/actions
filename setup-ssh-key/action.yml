@@ -1,14 +1,11 @@
 name: Install Pipenv Dependencies
 description: Github Action for installing pipenv dependencies
 
-secrets:
-  SSH_KEY:
-    required: true
-
 runs:
   using: composite
   steps:
     - name: Setup ssh key for git
+      shell: bash
       run: |
         mkdir -p /home/runner/.ssh
         ssh-keyscan -t rsa github.com > /home/runner/.ssh/known_hosts
