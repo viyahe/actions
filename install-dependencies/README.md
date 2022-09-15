@@ -1,6 +1,6 @@
 # install-dependencies
 
-Github Action for installint dependencies
+Github Action for installing dependencies
 
 ## Supports
 - pipenv
