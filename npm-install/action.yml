@@ -1,0 +1,31 @@
+name: Install NPM Dependencies
+description: Github Action for installing dependencies
+
+secrets:
+  NODE_AUTH_TOKEN:
+    required: true
+
+runs: 
+  using: composite
+  steps: 
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        always-auth: true
+        node-version: '14'
+        registry-url: https://npm.pkg.github.com
+        scope: '@viyahe'
+
+    - uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-modules-
+
+    - name: Install dependencies (yarn)
+      if: steps.yarn-cache.cache-hit != 'true'
+      run: yarn install --frozen-lockfile
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
