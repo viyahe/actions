@@ -1,6 +1,6 @@
-# pipenv-install 
+# setup-ssh-key
 
-Github Action for installing pipenv dependencies
+Github Action for setting up ssh key
 
 ## Getting Started
 
@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: viyahe/actions/pipenv-install@v1
+      - uses: viyahe/actions/setup-ssh-key@v1
         with:
           npm-install: true
 ```
